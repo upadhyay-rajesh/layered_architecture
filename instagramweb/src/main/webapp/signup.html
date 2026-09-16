@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	var v1 = 5;
+	var v2="Rajesh";
+	console.log("welcome to java script "+v1+"  "+v2);
+	
+	for(var i=1; i<=10;i++){
+		console.log(i*v1);
+	}
+	
+	function add(){
+		var c1 = document.getElementById("p1").value;
+		var c2 = document.getElementById("n1").value;
+		var c3 = document.getElementById("a1").value;
+		alert(c1.length);
+		if((c1.length<6)  || (c1.length>8)){
+			//alert("password length must be between 6 to 8 character");
+			document.getElementById("presult").innerHTML="<font color=red>password length must be between 6 to 8 character</font>";
+		}
+		//alert("i am a function "+c1+"  "+c2+"  "+c3);
+	}
+	function passwordcheck(){
+		var c1 = document.getElementById("p1").value;
+		if((c1.length<6)  || (c1.length>8)){
+			//alert("password length must be between 6 to 8 character");
+			document.getElementById("presult").innerHTML="<font color=red>password length must be between 6 to 8 character</font>";
+		}
+		else{
+			document.getElementById("presult").innerHTML="<font color=green>valid password</font>";
+		}
+	}
+	
+	function changecolor(){
+		var txt="<table border=1><tr><td>TV</td></tr><tr><td>Fridge</td></tr><tr><td>Washing</td></tr><tr><td>hair dryer</td></tr></table>";
+		document.getElementById("overresult").innerHTML=txt;
+	}
+	function changecolor1(){
+		var txt="";
+		document.getElementById("overresult").innerHTML=txt;
+	}
+	
+	function checkemail(){
+		var c3 = document.getElementById("ee").value;
+		//step 1 how to getxhr?
+				xhr=new XMLHttpRequest();
+		//step 2 how xhr will open connection with servlet
+		xhr.open("Get","CheckEmailServlet?email="+c3,true);
+		//step 3 how xhr will send request
+		xhr.send();
+		//step 4 how xhr will get response
+		xhr.onreadystatechange=function(){
+			if(xhr.status == 200){
+				var v1 = xhr.responseText;
+				document.getElementById("emailresult").innerHTML=v1;
+			}
+		}
+	}
+	
+	function generatecaptcha(){
+		xhr=new XMLHttpRequest();
+		xhr.open("Get","GenerateCaptchaServlet",true);
+		xhr.send();
+		xhr.onreadystatechange=function(){
+			if(xhr.status == 200){
+				var v1 = xhr.responseText;
+				document.getElementById("captcharesult").innerHTML=v1;
+			}
+		}
+	}
+	
+	function verifycapcha(){
+		var v1 = document.getElementById("hh").value;
+		var v2 = document.getElementById("dd").value;
+		alert(v1+"   "+v2);
+		if(v1===v2){
+			document.getElementById("bb").disabled=false;
+		}
+	}
+	
+	function loadCountry(){
+		xhr=new XMLHttpRequest();
+		xhr.open("Get","LoadCountryServlet",true);
+		xhr.send();
+		xhr.onreadystatechange=function(){
+			if(xhr.status == 200){
+				var v1 = xhr.responseText;
+				document.getElementById("country").innerHTML=v1;
+			}
+		}
+	}
+	
+	function loadState(){
+		var cc=document.getElementById("country1").value;
+		alert(cc);
+		xhr=new XMLHttpRequest();
+		xhr.open("Get","LoadStateServlet?countryName="+cc,true);
+		xhr.send();
+		xhr.onreadystatechange=function(){
+			if(xhr.status == 200){
+				var v1 = xhr.responseText;
+				document.getElementById("state").innerHTML=v1;
+			}
+		}
+	}
+	
+</script>
+
+
+<style type="text/css">
+	#b{
+	color:red;
+	background-color:yellow;
+	}
+	.d{
+	color:blue;
+	}
+	.c{
+	color:cyan;
+	}
+	body{
+	background-color:pink;
+	}
+</style>
+</head>
+<body>
+<center><font size=5 color=red><b>Sign Up</b></font>
+<form action="RegisterServlet" method="post">
+<p class="a" id="b" name="c">Registration page</p>
+<p id="ppp" class="ccc" onmouseover=changecolor() onmouseout=changecolor1()>Electronice</p>
+<div id="overresult"></div>
+
+<table border=1>
+	<tr>
+		<td>Name</td><td><input type=text name=n id="n1" required></td>
+	</tr>
+	<tr>
+		<td>Password</td><td><input type=password name=p id="p1" minlength="3" maxlength="8"></td><td id="presult"></td>
+	</tr>
+	<tr>
+		<td>Email</td><td><input type=email id="ee" name=e onkeyup="checkemail()"></td><td><div id=emailresult></div></td>
+	</tr>
+	<tr>
+		<td>Address</td><td><input type=text name=a onblur="loadCountry()"></td>
+	</tr>
+	<tr>
+		<td>Country</td><td><div id=country onChange="loadState()"></div></td>
+	</tr>
+	<tr>
+		<td>State</td><td><div id=state></div></td>
+	</tr>
+	<tr>
+		<td>Age</td><td><input type=number name=age id="a1" min="18" max="60" onblur="generatecaptcha()"></td>
+	</tr>
+	<tr>
+	<td><div id=captcharesult></div></td>
+	</tr>
+	<tr>
+	<td><input type=submit value="Register" id="bb" disabled></td><td><input type=reset></td>
+	</tr>
+</table>
+</form>
+</center>
+</body>
+</html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HTML5 Form Validation</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        form {
+            width: 600px;
+            margin: 30px auto;
+            padding: 25px;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 9px;
+            box-sizing: border-box;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: auto;
+        }
+
+        input:invalid,
+        select:invalid,
+        textarea:invalid {
+            border: 2px solid red;
+        }
+
+        input:valid,
+        select:valid,
+        textarea:valid {
+            border: 2px solid green;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<form>
+
+    <h2>Employee Registration</h2>
+
+    <!-- 1. Text -->
+    <div class="form-group">
+        <label>Employee Name</label>
+
+        <input
+            type="text"
+            name="name"
+            placeholder="Enter employee name"
+            required
+            minlength="3"
+            maxlength="50"
+            pattern="[A-Za-z ]+"
+        >
+    </div>
+
+
+    <!-- 2. Email -->
+    <div class="form-group">
+        <label>Email</label>
+
+        <input
+            type="email"
+            name="email"
+            placeholder="example@gmail.com"
+            required
+        >
+    </div>
+
+
+    <!-- 3. Password -->
+    <div class="form-group">
+        <label>Password</label>
+
+        <input
+            type="password"
+            name="password"
+            required
+            minlength="8"
+            maxlength="20"
+            pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,}"
+            title="Password must contain uppercase, lowercase and number"
+        >
+    </div>
+
+
+    <!-- 4. Number -->
+    <div class="form-group">
+        <label>Age</label>
+
+        <input
+            type="number"
+            name="age"
+            required
+            min="18"
+            max="60"
+            step="1"
+        >
+    </div>
+
+
+    <!-- 5. Telephone -->
+    <div class="form-group">
+        <label>Mobile Number</label>
+
+        <input
+            type="tel"
+            name="mobile"
+            required
+            pattern="[6-9][0-9]{9}"
+            maxlength="10"
+            title="Enter a valid 10 digit Indian mobile number"
+        >
+    </div>
+
+
+    <!-- 6. URL -->
+    <div class="form-group">
+        <label>Portfolio URL</label>
+
+        <input
+            type="url"
+            name="portfolio"
+            placeholder="https://example.com"
+            required
+        >
+    </div>
+
+
+    <!-- 7. Date -->
+    <div class="form-group">
+        <label>Date of Birth</label>
+
+        <input
+            type="date"
+            name="dob"
+            required
+            min="1960-01-01"
+            max="2010-12-31"
+        >
+    </div>
+
+
+    <!-- 8. Time -->
+    <div class="form-group">
+        <label>Interview Time</label>
+
+        <input
+            type="time"
+            name="interviewTime"
+            required
+            min="09:00"
+            max="18:00"
+        >
+    </div>
+
+
+    <!-- 9. DateTime Local -->
+    <div class="form-group">
+        <label>Joining Date & Time</label>
+
+        <input
+            type="datetime-local"
+            name="joiningDateTime"
+            required
+        >
+    </div>
+
+
+    <!-- 10. Month -->
+    <div class="form-group">
+        <label>Joining Month</label>
+
+        <input
+            type="month"
+            name="joiningMonth"
+            required
+        >
+    </div>
+
+
+    <!-- 11. Week -->
+    <div class="form-group">
+        <label>Training Week</label>
+
+        <input
+            type="week"
+            name="trainingWeek"
+            required
+        >
+    </div>
+
+
+    <!-- 12. Color -->
+    <div class="form-group">
+        <label>Favorite Color</label>
+
+        <input
+            type="color"
+            name="color"
+            value="#0000ff"
+        >
+    </div>
+
+
+    <!-- 13. Range -->
+    <div class="form-group">
+        <label>Experience: 0 - 20 Years</label>
+
+        <input
+            type="range"
+            name="experience"
+            min="0"
+            max="20"
+            step="1"
+            value="2"
+        >
+    </div>
+
+
+    <!-- 14. Radio -->
+    <div class="form-group">
+
+        <label>Gender</label>
+
+        <input
+            type="radio"
+            name="gender"
+            value="male"
+            required
+        >
+        Male
+
+        <input
+            type="radio"
+            name="gender"
+            value="female"
+        >
+        Female
+
+        <input
+            type="radio"
+            name="gender"
+            value="other"
+        >
+        Other
+
+    </div>
+
+
+    <!-- 15. Checkbox -->
+    <div class="form-group">
+
+        <label>Skills</label>
+
+        <input
+            type="checkbox"
+            name="skill"
+            value="java"
+            required
+        >
+        Java
+
+        <input
+            type="checkbox"
+            name="skill"
+            value="python"
+        >
+        Python
+
+        <input
+            type="checkbox"
+            name="skill"
+            value="javascript"
+        >
+        JavaScript
+
+    </div>
+
+
+    <!-- 16. Select -->
+    <div class="form-group">
+
+        <label>Department</label>
+
+        <select name="department" required>
+
+            <option value="">-- Select Department --</option>
+
+            <option value="hr">HR</option>
+            <option value="it">IT</option>
+            <option value="sales">Sales</option>
+            <option value="finance">Finance</option>
+
+        </select>
+
+    </div>
+
+
+    <!-- 17. Multiple Select -->
+    <div class="form-group">
+
+        <label>Programming Languages</label>
+
+        <select name="languages" multiple required>
+
+            <option value="java">Java</option>
+            <option value="python">Python</option>
+            <option value="javascript">JavaScript</option>
+            <option value="go">Go</option>
+
+        </select>
+
+    </div>
+
+
+    <!-- 18. Textarea -->
+    <div class="form-group">
+
+        <label>Address</label>
+
+        <textarea
+            name="address"
+            rows="5"
+            required
+            minlength="10"
+            maxlength="200"
+            placeholder="Enter your address"
+        ></textarea>
+
+    </div>
+
+
+    <!-- 19. Search -->
+    <div class="form-group">
+
+        <label>Search Employee</label>
+
+        <input
+            type="search"
+            name="search"
+            minlength="3"
+            maxlength="30"
+        >
+
+    </div>
+
+
+    <!-- 20. File -->
+    <div class="form-group">
+
+        <label>Resume</label>
+
+        <input
+            type="file"
+            name="resume"
+            required
+            accept=".pdf,.doc,.docx"
+        >
+
+    </div>
+
+
+    <!-- 21. Hidden -->
+    <input
+        type="hidden"
+        name="employeeId"
+        value="101"
+    >
+
+
+    <!-- Submit -->
+    <button type="submit">
+        Register
+    </button>
+
+    <!-- Reset -->
+    <button type="reset">
+        Reset
+    </button>
+
+</form>
+
+</body>
+</html>
