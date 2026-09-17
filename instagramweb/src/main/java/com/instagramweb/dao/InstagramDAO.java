@@ -6,6 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import javax.persistence.EntityTransaction;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
 import com.instagramweb.entity.Country;
 import com.instagramweb.entity.InstagramUser;
 import com.instagramweb.entity.State;
@@ -15,6 +21,7 @@ public class InstagramDAO implements InstagramDAOInterface {
 	@Override
 	public int createProfileDAO(InstagramUser iu) {
 		int i=0;
+		/*
 		try {
 		//step 1 load driver
 		Class.forName("com.mysql.jdbc.Driver");
@@ -36,7 +43,14 @@ public class InstagramDAO implements InstagramDAOInterface {
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-		
+		*/
+		SessionFactory sf= new Configuration().configure().buildSessionFactory();
+		Session ss =sf.openSession();
+		EntityTransaction et=ss.getTransaction();
+		et.begin();
+		ss.save(iu);
+		et.commit();
+		i=1;
 		
 		return i;
 	}
